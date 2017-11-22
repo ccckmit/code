@@ -1,0 +1,51 @@
+
+// ================================UNICODE ========================================
+char *Utf16ToUtf8(char *utf8, int utf8_len, const Str unicode, int uni_len)
+{
+  int i, j;
+
+  for (i = 0, j = 0; i < uni_len && j < utf8_len; ++i, ++j)
+  {
+    if (unicode[i] < 0x80)
+    {
+        utf8[j] = unicode[i] & 0x7F;
+    }
+    else if (unicode[i] < 0x800 && j+1 < utf8_len)
+    {
+        utf8[j] = 0xC0 | (unicode[i] >> 6);
+        utf8[++j] = 0x80 | (unicode[i] & 0x3F);
+    }
+    else if (unicode[i] < 0x10000 && j+2 < utf8_len)
+    {
+        utf8[j] = 0xE0 | (unicode[i] >> 12);
+        utf8[++j] = 0x80 | ((unicode[i] >> 6) & 0x3F);
+        utf8[++j] = 0x80 | (unicode[i] & 0x3F);
+    }
+    else if (unicode[i] < 0x200000 && j+3 < utf8_len)
+    {
+        utf8[j] = 0xF0 | (unicode[i] >> 18);
+        utf8[++j] = 0x80 | ((unicode[i] >> 12) & 0x3F);
+        utf8[++j] = 0x80 | ((unicode[i] >> 6) & 0x3F);
+        utf8[++j] = 0x80 | (unicode[i] & 0x3F);
+    }
+    else if (unicode[i] < 0x4000000 && j+4 < utf8_len)
+    {
+        utf8[j] = 0xF8 | (unicode[i] >> 24);
+        utf8[++j] = 0x80 | ((unicode[i] >> 18) & 0x3F);
+        utf8[++j] = 0x80 | ((unicode[i] >> 12) & 0x3F);
+        utf8[++j] = 0x80 | ((unicode[i] >> 6) & 0x3F);
+        utf8[++j] = 0x80 | (unicode[i] & 0x3F);
+    }
+    else if (unicode[i] < 0x80000000 && j+5 < utf8_len)
+    {
+            utf8[j] = 0xFC | (unicode[i] >> 30);
+        utf8[++j] = 0x80 | ((unicode[i] >> 24) & 0x3F);
+        utf8[++j] = 0x80 | ((unicode[i] >> 18) & 0x3F);
+        utf8[++j] = 0x80 | ((unicode[i] >> 12) & 0x3F);
+        utf8[++j] = 0x80 | ((unicode[i] >> 6) & 0x3F);
+        utf8[++j] = 0x80 | (unicode[i] & 0x3F);
+    }
+  }
+  utf8[j] = 0;
+  return utf8;
+}

@@ -1,0 +1,168 @@
+Microsoft (R) Macro Assembler Version 9.00.21022.08	    09/02/09 14:27:38
+6Win32 Console Example #1                (Console1.asm	     Page 1 - 1
+
+
+				TITLE Win32 Console Example #1                (Console1.asm)
+
+				; This program calls the following Win32 Console functions:
+				; GetStdHandle, ExitProcess, WriteConsole
+				; Last update: 08/22/2006
+
+				;INCLUDE SmallWin.inc
+				;INCLUDE Irvine32.inc
+
+				.NOLIST
+				.LIST
+
+ 00000000			.data
+ = 0dh,0ah			endl EQU <0dh,0ah>	; end of line sequence
+ 00000000			message LABEL BYTE
+ 00000000  54 68 69 73 20		BYTE "This program is a simple demonstration of "
+	   70 72 6F 67 72
+	   61 6D 20 69 73
+	   20 61 20 73 69
+	   6D 70 6C 65 20
+	   64 65 6D 6F 6E
+	   73 74 72 61 74
+	   69 6F 6E 20 6F
+	   66 20
+ 0000002A  63 6F 6E 73 6F		BYTE "console mode output, using the GetStdHandle "
+	   6C 65 20 6D 6F
+	   64 65 20 6F 75
+	   74 70 75 74 2C
+	   20 75 73 69 6E
+	   67 20 74 68 65
+	   20 47 65 74 53
+	   74 64 48 61 6E
+	   64 6C 65 20
+ 00000056  61 6E 64 20 57		BYTE "and WriteConsole functions.", endl
+	   72 69 74 65 43
+	   6F 6E 73 6F 6C
+	   65 20 66 75 6E
+	   63 74 69 6F 6E
+	   73 2E 0D 0A
+ 00000073 00000073		messageSize DWORD ($-message)
+
+ 00000077 00000000		consoleHandle HANDLE 0     ; handle to standard output device
+ 0000007B 00000000		bytesWritten  DWORD ?      ; number of bytes written
+
+ 00000000			.code
+
+
+ 00000000			main PROC
+				  ; Get the console output handle:
+					INVOKE GetStdHandle, STD_OUTPUT_HANDLE
+ 00000007  A3 00000077 R		mov consoleHandle,eax
+
+				  ; Write a string to the console:
+				;	INVOKE WriteConsole,
+				;	  consoleHandle,		; console output handle
+				;	  ADDR message,       	; string pointer
+				;	  messageSize,			; string length
+				;	  ADDR bytesWritten,	; returns num bytes written
+				;	  0					; not used
+
+					INVOKE ExitProcess,0
+ 00000013			main ENDP
+
+				;--------------------------------------------------------
+ 00000013			WriteStringProc PROC
+				;
+				; Writes a null-terminated string to standard
+				; output. Input parameter: EDX points to the
+				; string.
+				; Last update: 9/7/01
+				;--------------------------------------------------------
+ 00000013  60				pushad
+
+				;	CheckInit
+
+				;	INVOKE Str_length,edx   	; return length of string in EAX
+				;	cld	; must do this before WriteConsole
+
+					INVOKE WriteConsole,
+..\Console1.asm(79) : error A2006:undefined symbol : consoleOutHandle
+..\Console1.asm(79) : error A2114:INVOKE argument type mismatch : argument : 1
+					    consoleOutHandle,     	; console output handle
+					    edx,	; points to string
+					    eax,	; string length
+					    OFFSET bytesWritten,  	; returns number of bytes written
+					    0
+
+ 00000022  61				popad
+ 00000023  C3				ret
+ 00000024			WriteStringProc ENDP
+
+				;-------------------------------------------------------------
+				WriteString MACRO
+				;
+				; Helper macro
+				; Check to see if the console handles have been initialized
+				; If not, initialize them now.
+				;-------------------------------------------------------------
+				LOCAL exit
+					cmp InitFlag,0
+					jne exit
+					call Initialize
+				exit:
+				ENDM
+
+				END main
+Microsoft (R) Macro Assembler Version 9.00.21022.08	    09/02/09 14:27:38
+6Win32 Console Example #1                (Console1.asm	     Symbols 2 - 1
+
+
+
+
+Macros:
+
+                N a m e                 Type
+
+WriteString  . . . . . . . . . .	Proc
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 0000007F Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000024 Para	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetStdHandle . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteConsoleA  . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteStringProc  . . . . . . . .	P Near	 00000013 _TEXT	Length= 00000011 Public STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000013 Public STDCALL
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+HANDLE . . . . . . . . . . . . .	Text   	 DWORD
+STD_OUTPUT_HANDLE  . . . . . . .	Number	 -0000000Bh   
+WriteConsole . . . . . . . . . .	Text   	 WriteConsoleA
+bytesWritten . . . . . . . . . .	DWord	 0000007B _DATA	
+consoleHandle  . . . . . . . . .	DWord	 00000077 _DATA	
+endl . . . . . . . . . . . . . .	Text   	 0dh,0ah
+messageSize  . . . . . . . . . .	DWord	 00000073 _DATA	
+message  . . . . . . . . . . . .	Byte	 00000000 _DATA	
+
+	   0 Warnings
+	   2 Errors
