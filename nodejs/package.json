@@ -13,6 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
-    "express-static": "^1.2.5"
+    "express-static": "^1.2.5",
+    "google-translate-api": "^2.3.0",
+    "translate": "^1.0.0",
+    "translate-api": "^0.3.12"
   }
 }
