@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     printf("There are %d keys in the hash table\n",
         g_hash_table_size(hash));
 
-    printf("Jazzy likes %s\n",g_hash_table_lookup(hash,"Jazzy"));
+    printf("Jazzy likes %s\n", (char*) g_hash_table_lookup(hash,"Jazzy"));
 
     g_hash_table_destroy(hash);
     return 0;
