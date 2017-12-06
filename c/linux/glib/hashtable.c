@@ -40,4 +40,7 @@ int main(int argc, char *argv[]) {
     g_hash_table_destroy(hash);
     return 0;
 }
+<<<<<<< HEAD
+>>>>>>> 06c9d8fda266177f3a85d377e4938110dd4536e2
+=======
 >>>>>>> 06c9d8fda266177f3a85d377e4938110dd4536e2
