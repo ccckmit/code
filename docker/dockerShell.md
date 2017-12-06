@@ -27,3 +27,23 @@ bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  s
    94  curl -sL https://deb.nodesource.com/setup_8.x | bash -
    95  apt-get install -y nodejs
    96  node -v
+mac020:docker mac020$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                       PORTS               NAMES
+f247322cfa90        ubuntu:latest       "/bin/bash"         4 minutes ago       Exited (127) 2 minutes ago                       blissful_bardeen
+88ee5522f9f9        ubuntu:latest       "/bin/bash"         5 minutes ago       Exited (127) 4 minutes ago                       sad_noether
+02847d7babe8        ubuntu:latest       "/bin/bash"         21 hours ago        Exited (0) 2 seconds ago                         agitated_yonath
+
+mac020:docker mac020$ docker start -i 0284
+root@02847d7babe8:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@02847d7babe8:/# gcc
+gcc: fatal error: no input files
+compilation terminated.
+root@02847d7babe8:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@02847d7babe8:/# cd home
+root@02847d7babe8:/home# ls
+code  git
+root@02847d7babe8:/home# cd code
+root@02847d7babe8:/home/code# ls
+JavaScript  README.md  c  cpp  electronjs  go  html  installer  kotlin  nodejs  python  scala  shell  verilog
