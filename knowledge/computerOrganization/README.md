@@ -39,7 +39,7 @@ Intel 處理器的規格系列網頁如下
 [Xeon]:https://zh.wikipedia.org/wiki/%E8%87%B3%E5%BC%BA
 
 * [Celeron] 是 Intel 的低端产品，俗称垃圾产品，特点是便宜、性能差。
-* Pentium 是 Intel 的高端产品（2004年前是这样）。
+* [Pentium] 是 Intel 的高端产品（2004年前是这样）。
 * [Core] 是 Intel 的主流产品，特点是目前的主流，有低端的也有高端的。
 * [Xeon] 是 Intel 目前的最强的产品，特点是服务器使用，当然个人也可以使用，它也包括高端与低端，它的高端，是目前性能最强的CPU。
 
