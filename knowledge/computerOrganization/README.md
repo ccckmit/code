@@ -13,9 +13,9 @@
 
 屬性 | 說明
 -----|------------------
-# of Cores | 4
+number of Cores | 4
 Burst Frequency | 2240.0
-# of Threads | 4
+number of Threads | 4
 Processor Base Frequency  | 1.60 GHz
 TDP | 6.0 W
 Cache 2 MB | L2
