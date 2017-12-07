@@ -2,7 +2,7 @@
 
 ## 方法 1 -- 手動打包
 
-* https://electronjs.org/docs/tutorial/application-distribution
+* https://electronjs.org/docs/tutorial/application-distribution
 
 ## 方法 2 -- 自動打包
 
