@@ -1,5 +1,7 @@
 Course : Deep Learning
 
+* [莫烦PYTHON (影片加程式)](https://morvanzhou.github.io/tutorials/)
+
 清大吳尚鴻: http://www.cs.nthu.edu.tw/~shwu/courses/ml/
 
 https://www.facebook.com/jungyi.lin.7/posts/1929643663729485
