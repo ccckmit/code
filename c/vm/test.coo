@@ -1,7 +1,0 @@
-	sum=0
-	i=1
-loop:	i.cmp(10)
-	j < exit
-	i=i.add(1)
-	jmp loop
-exit:	print i
